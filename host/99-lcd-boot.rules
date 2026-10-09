@@ -1,0 +1,4 @@
+# HAOS Pi LCD Dashboard: boot/shutdown screen on the Waveshare 1.47" LCD.
+# Starts lcd_boot.py as the transient unit "lcd-boot" when the SPI device appears.
+# Before=docker.service makes its ExecStop run after all containers have stopped.
+ACTION=="add", SUBSYSTEM=="spidev", KERNEL=="spidev0.0", RUN+="/usr/bin/systemd-run --no-block --unit=lcd-boot --description=LCD-boot-screen -p RequiresMountsFor=/mnt/data -p Before=docker.service -p RemainAfterExit=yes '-pExecStop=/usr/bin/python3 /mnt/data/lcd_boot/lcd_boot.py stop' /usr/bin/python3 /mnt/data/lcd_boot/lcd_boot.py boot"

@@ -1,0 +1,49 @@
+configuration:
+  night_mode:
+    name: Night mode
+    description: Turn the LCD off automatically during the night window.
+  night_start:
+    name: Night starts
+    description: Time the LCD turns off (24h, HH:MM).
+  night_end:
+    name: Night ends
+    description: Time the LCD turns back on (24h, HH:MM).
+  refresh_interval:
+    name: Refresh interval
+    description: Seconds between screen updates (2-60).
+  rotate_180:
+    name: Rotate 180°
+    description: Flip the screen if the display is mounted upside down.
+  temp_warning:
+    name: Temperature warning (°C)
+    description: Temperature bar turns red at this value.
+  temp_critical:
+    name: Temperature critical (°C)
+    description: Header status changes to Warning at this value.
+  system_seconds:
+    name: System page time
+    description: Seconds the System page stays on screen when rotating (5-300).
+  devices_seconds:
+    name: Devices page time
+    description: Seconds the Devices page stays on screen when rotating (5-300).
+  device_groups:
+    name: Device groups
+    description: Groups shown on the Devices page, in order (up to six). Pin a page with the LCD Page helper.
+  theme:
+    name: Theme
+    description: "advanced: tiles, bars and detail. simple: big numbers, no cards, detail only when something needs attention."
+  spi_device:
+    name: SPI device
+    description: SPI bus the LCD is wired to.
+  gpio_chip:
+    name: GPIO chip
+    description: GPIO character device (Pi 4 and Pi 5 use /dev/gpiochip0 on current HAOS).
+  dc_pin:
+    name: DC pin (BCM)
+    description: Data/command GPIO, BCM numbering.
+  rst_pin:
+    name: RST pin (BCM)
+    description: Reset GPIO, BCM numbering.
+  bl_pin:
+    name: Backlight pin (BCM)
+    description: Backlight GPIO, BCM numbering.

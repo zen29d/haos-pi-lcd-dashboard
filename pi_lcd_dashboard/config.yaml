@@ -1,0 +1,56 @@
+name: HAOS Pi LCD Dashboard
+version: "1.5.0"
+slug: pi_lcd_dashboard
+url: https://github.com/zen29d/haos-pi-lcd-dashboard
+description: UniFi-style status dashboard for the Waveshare 1.47" LCD on Raspberry Pi 5
+arch:
+  - aarch64
+startup: services
+boot: auto
+init: false
+host_network: true
+homeassistant_api: true
+devices:
+  - /dev/spidev0.0
+  - /dev/gpiochip0
+options:
+  night_mode: true
+  night_start: "23:00"
+  night_end: "07:00"
+  refresh_interval: 5
+  rotate_180: false
+  temp_warning: 70
+  temp_critical: 80
+  system_seconds: 20
+  devices_seconds: 10
+  device_groups:
+    - lights
+    - power
+    - climate
+    - air
+    - servers
+    - motion
+  theme: advanced
+  spi_device: /dev/spidev0.0
+  gpio_chip: /dev/gpiochip0
+  dc_pin: 25
+  rst_pin: 27
+  bl_pin: 18
+schema:
+  night_mode: bool
+  night_start: match(^([01][0-9]|2[0-3]):[0-5][0-9]$)
+  night_end: match(^([01][0-9]|2[0-3]):[0-5][0-9]$)
+  refresh_interval: int(2,60)
+  rotate_180: bool
+  temp_warning: int(40,95)
+  temp_critical: int(40,100)
+  system_seconds: int(5,300)
+  devices_seconds: int(5,300)
+  device_groups:
+    - "list(lights|power|climate|air|servers|motion|phones)"
+  theme: list(advanced|simple)
+  spi_device: str
+  gpio_chip: str
+  dc_pin: int(0,53)
+  rst_pin: int(0,53)
+  bl_pin: int(0,53)
