@@ -136,6 +136,8 @@ ssh -p 22222 root@homeassistant.local '
   udevadm control --reload'
 ```
 
+The script runs with the host's own Python 3, so there is nothing to install. Home Assistant OS includes Python 3 on Raspberry Pi 4, Raspberry Pi 5 and Home Assistant Yellow images, because the Raspberry Pi EEPROM updater (`rpi-eeprom-config`) needs it. If a future OS release dropped it, only this early screen would stop; the app's own boot screen still appears once the app starts.
+
 How it works: a udev rule starts `lcd_boot.py` as the transient systemd unit `lcd-boot` as soon as `/dev/spidev0.0` appears. The script uses only the Python standard library and streams artwork that the app pre-renders into its data folder, so start the app once before rebooting. When the app starts it asks the script to release the GPIO lines and continues the same progress bar. The unit is ordered before `docker.service`, so its stop action runs after every container has stopped and can tell a reboot from a power-off.
 
 `/etc/udev/rules.d` and `/mnt/data` survive Home Assistant OS updates. To remove it:
